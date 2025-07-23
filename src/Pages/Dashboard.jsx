@@ -100,7 +100,11 @@ const Dashboard = () => {
       setUserData(response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
-      toast.error("Failed to fetch user data");
+      if (error.response?.status === 401) {
+        navigate("/login");
+      } else {
+        toast.error("Failed to fetch user data");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -110,11 +114,13 @@ const Dashboard = () => {
     fetchUserData();
   }, []);
 
-  // console.log("userData", userData);
+  useEffect(() => {
+    if (!userData && !isLoading) {
+      navigate("/login");
+    }
+  }, [userData, isLoading, navigate]);
 
-  if (!userData) {
-    navigate("/login");
-  }
+  // console.log("userData", userData);
 
   const handleSort = (groups) => {
     if (!groups) return [];
