@@ -120,8 +120,6 @@ const Dashboard = () => {
     }
   }, [userData, isLoading, navigate]);
 
-  // console.log("userData", userData);
-
   const handleSort = (groups) => {
     if (!groups) return [];
     return [...groups].sort((a, b) => {
@@ -362,7 +360,7 @@ const Dashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="ml-64 lg:ml-72">
+        <div className="lg:ml-64 xl:ml-72">
           {/* Top Bar */}
           <header
             className={`sticky top-0 z-30 ${
@@ -371,7 +369,7 @@ const Dashboard = () => {
               darkMode ? "border-gray-700" : "border-gray-200"
             }`}
           >
-            <div className="px-4 py-3">
+            <div className="px-3 sm:px-4 py-3">
               {/* Mobile Layout */}
               <div className="flex flex-col space-y-3 lg:hidden">
                 {/* Top Row - Menu & User */}
@@ -562,7 +560,7 @@ const Dashboard = () => {
                     placeholder="Search groups..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className={`w-full pl-10 pr-4 py-2.5 rounded-lg border ${
+                    className={`w-full pl-10 pr-4 py-3 rounded-lg border ${
                       darkMode
                         ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400"
                         : "bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-500"
@@ -578,7 +576,7 @@ const Dashboard = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className={`absolute left-3 top-3 ${
+                    className={`absolute left-3 top-3.5 ${
                       darkMode ? "text-gray-400" : "text-gray-500"
                     }`}
                   >
@@ -592,7 +590,7 @@ const Dashboard = () => {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className={`flex-1 px-3 py-2.5 rounded-lg border ${
+                    className={`flex-1 px-3 py-3 rounded-lg border ${
                       darkMode
                         ? "bg-gray-700 border-gray-600 text-white"
                         : "bg-white border-gray-200 text-gray-800"
@@ -607,7 +605,7 @@ const Dashboard = () => {
                     onClick={() =>
                       setSortOrder(sortOrder === "asc" ? "desc" : "asc")
                     }
-                    className={`p-2.5 rounded-lg ${
+                    className={`p-3 rounded-lg ${
                       darkMode
                         ? "bg-gray-700 hover:bg-gray-600"
                         : "bg-white hover:bg-gray-50"
@@ -884,18 +882,18 @@ const Dashboard = () => {
           </header>
 
           {/* Dashboard Content */}
-          <main className="p-4 sm:p-6">
+          <main className="p-3 sm:p-4 lg:p-6">
             {/* User Info */}
             <div className="mb-6">
               <h1
-                className={`text-2xl font-bold mb-2 ${
+                className={`text-xl sm:text-2xl font-bold mb-2 ${
                   darkMode ? "text-white" : "text-gray-800"
                 }`}
               >
                 Welcome, {userData?.user?.name}
               </h1>
               <p
-                className={`text-sm ${
+                className={`text-xs sm:text-sm ${
                   darkMode ? "text-gray-400" : "text-gray-600"
                 }`}
               >
@@ -908,14 +906,14 @@ const Dashboard = () => {
             <div className="mb-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
                 <h2
-                  className={`text-xl font-bold ${
+                  className={`text-lg sm:text-xl font-bold ${
                     darkMode ? "text-white" : "text-gray-800"
                   }`}
                 >
                   Your Owned Groups ({filteredGroups.length})
                 </h2>
                 <Link to="/dashboard/create-group">
-                  <button className="flex items-center justify-center space-x-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-colors w-full sm:w-auto">
+                  <button className="flex items-center justify-center space-x-1 px-4 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-colors w-full sm:w-auto">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -935,27 +933,27 @@ const Dashboard = () => {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
                 {filteredGroups.map((group) => (
                   <div
                     key={group._id}
                     className={`${
                       darkMode ? "bg-gray-800" : "bg-white"
-                    } rounded-xl p-5 border ${
+                    } rounded-xl p-4 sm:p-5 border ${
                       darkMode ? "border-gray-700" : "border-gray-200"
                     } shadow-sm hover:shadow-md transition-all duration-300`}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1 min-w-0">
                         <h3
-                          className={`font-bold text-lg mb-1 truncate ${
+                          className={`font-bold text-base sm:text-lg mb-1 truncate ${
                             darkMode ? "text-white" : "text-gray-800"
                           }`}
                         >
                           {group.name}
                         </h3>
                         <p
-                          className={`text-sm ${
+                          className={`text-xs sm:text-sm ${
                             darkMode ? "text-gray-400" : "text-gray-500"
                           }`}
                         >
@@ -964,7 +962,7 @@ const Dashboard = () => {
                       </div>
                       <div className="text-right ml-2">
                         <p
-                          className={`font-bold text-xl ${
+                          className={`font-bold text-lg sm:text-xl ${
                             darkMode ? "text-white" : "text-gray-800"
                           }`}
                         >
@@ -1117,33 +1115,33 @@ const Dashboard = () => {
             {/* Joined Groups */}
             <div className="mb-8">
               <h2
-                className={`text-xl font-bold mb-4 ${
+                className={`text-lg sm:text-xl font-bold mb-4 ${
                   darkMode ? "text-white" : "text-gray-800"
                 }`}
               >
                 Groups You've Joined ({userData?.groups?.joined?.length || 0})
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
                 {userData?.groups?.joined?.map((group) => (
                   <div
                     key={group._id}
                     className={`${
                       darkMode ? "bg-gray-800" : "bg-white"
-                    } rounded-xl p-5 border ${
+                    } rounded-xl p-4 sm:p-5 border ${
                       darkMode ? "border-gray-700" : "border-gray-200"
                     } shadow-sm hover:shadow-md transition-all duration-300`}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1 min-w-0">
                         <h3
-                          className={`font-bold text-lg mb-1 truncate ${
+                          className={`font-bold text-base sm:text-lg mb-1 truncate ${
                             darkMode ? "text-white" : "text-gray-800"
                           }`}
                         >
                           {group.name}
                         </h3>
                         <p
-                          className={`text-sm ${
+                          className={`text-xs sm:text-sm ${
                             darkMode ? "text-gray-400" : "text-gray-500"
                           }`}
                         >
@@ -1153,7 +1151,7 @@ const Dashboard = () => {
                       </div>
                       <div className="text-right ml-2">
                         <p
-                          className={`font-bold text-xl ${
+                          className={`font-bold text-lg sm:text-xl ${
                             darkMode ? "text-white" : "text-gray-800"
                           }`}
                         >

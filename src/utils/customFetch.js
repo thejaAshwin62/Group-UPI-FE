@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const customFetch = axios.create({
-  baseURL: "https://group-upi.onrender.com/api/v1",
+  baseURL: import.meta.env.VITE_BACKEND_URL || "http://localhost:5000",
   withCredentials: true,
 });
 
